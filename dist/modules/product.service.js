@@ -19,4 +19,12 @@ const getAllProductsFromDB = () => __awaiter(void 0, void 0, void 0, function* (
     const result = yield product_model_1.productModel.find();
     return result;
 });
-exports.productServices = { createProductIntoDB, getAllProductsFromDB };
+const getProductByIdFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield product_model_1.productModel.find({ _id: id });
+    return result;
+});
+exports.productServices = {
+    createProductIntoDB,
+    getAllProductsFromDB,
+    getProductByIdFromDB,
+};

@@ -8,7 +8,7 @@ const createProduct = async (req: Request, res: Response) => {
 
     res.status(200).json({
       success: true,
-      message: "Product created successfully",
+      message: "Product created successfully!",
       data: result,
     });
   } catch (error) {
@@ -16,4 +16,17 @@ const createProduct = async (req: Request, res: Response) => {
   }
 };
 
-export const ProductControllers = { createProduct };
+const getProducts = async (req: Request, res: Response) => {
+  try {
+    const result = await productServices.getAllProductsFromDB();
+    res.status(200).json({
+      success: true,
+      message: "Products fetched successfully!",
+      data: result,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const ProductControllers = { createProduct, getProducts };

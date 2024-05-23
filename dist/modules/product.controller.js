@@ -17,7 +17,7 @@ const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         const result = yield product_service_1.productServices.createProductIntoDB(product);
         res.status(200).json({
             success: true,
-            message: "Product created successfully",
+            message: "Product created successfully!",
             data: result,
         });
     }
@@ -25,4 +25,17 @@ const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         console.log(error);
     }
 });
-exports.ProductControllers = { createProduct };
+const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const result = yield product_service_1.productServices.getAllProductsFromDB();
+        res.status(200).json({
+            success: true,
+            message: "Products fetched successfully!",
+            data: result,
+        });
+    }
+    catch (error) {
+        console.log(error);
+    }
+});
+exports.ProductControllers = { createProduct, getProducts };

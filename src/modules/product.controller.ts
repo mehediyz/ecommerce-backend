@@ -25,7 +25,9 @@ const getProducts = async (req: Request, res: Response) => {
     );
     res.status(200).json({
       success: true,
-      message: "Products fetched successfully!",
+      message: `Products${
+        searchTerm ? ` matching search term '${searchTerm}'` : ""
+      } fetched successfully!`,
       data: result,
     });
   } catch (error) {

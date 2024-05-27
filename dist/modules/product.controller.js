@@ -52,8 +52,24 @@ const getProductById = (req, res) => __awaiter(void 0, void 0, void 0, function*
         console.log(error);
     }
 });
+const updateProductById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { productId } = req.params;
+        const product = req.body;
+        const result = yield product_service_1.productServices.updateProductByIdIntoDB(productId, product);
+        res.status(200).json({
+            success: true,
+            message: "Product updated successfully!",
+            data: result,
+        });
+    }
+    catch (error) {
+        console.error(error);
+    }
+});
 exports.ProductControllers = {
     createProduct,
     getProducts,
     getProductById,
+    updateProductById,
 };

@@ -67,9 +67,24 @@ const updateProductById = (req, res) => __awaiter(void 0, void 0, void 0, functi
         console.error(error);
     }
 });
+const deleteProductById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { productId } = req.params;
+        const result = yield product_service_1.productServices.deleteProductByIdFromDB(productId);
+        res.status(200).json({
+            success: true,
+            message: "Product deleted successfully!",
+            data: null,
+        });
+    }
+    catch (error) {
+        console.error(error);
+    }
+});
 exports.ProductControllers = {
     createProduct,
     getProducts,
     getProductById,
     updateProductById,
+    deleteProductById,
 };

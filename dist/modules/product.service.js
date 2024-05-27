@@ -15,8 +15,18 @@ const createProductIntoDB = (product) => __awaiter(void 0, void 0, void 0, funct
     const result = yield product_model_1.productModel.create(product);
     return result;
 });
-const getAllProductsFromDB = () => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield product_model_1.productModel.find();
+const getAllProductsFromDB = (searchTerm) => __awaiter(void 0, void 0, void 0, function* () {
+    let query = {};
+    if (searchTerm) {
+        query = {
+            $or: [
+                { name: { $regex: searchTerm, $options: "i" } },
+                { category: { $regex: searchTerm, $options: "i" } },
+                { description: { $regex: searchTerm, $options: "i" } },
+            ],
+        };
+    }
+    const result = yield product_model_1.productModel.find(query);
     return result;
 });
 const getProductByIdFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {

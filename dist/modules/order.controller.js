@@ -27,10 +27,11 @@ const createNewOrder = (req, res) => __awaiter(void 0, void 0, void 0, function*
 });
 const getAllOrders = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const result = yield order_service_1.OrderServices.getAllOrdersFromDB();
+        const { email } = req.query;
+        const result = yield order_service_1.OrderServices.getAllOrdersFromDB(email);
         res.status(200).json({
             success: true,
-            message: "Orders fetched successfully!",
+            message: "Orders fetched successfully for user email!",
             data: result,
         });
     }

@@ -25,4 +25,17 @@ const createNewOrder = (req, res) => __awaiter(void 0, void 0, void 0, function*
         console.error(error);
     }
 });
-exports.OrderController = { createNewOrder };
+const getAllOrders = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const result = yield order_service_1.OrderServices.getAllOrdersFromDB();
+        res.status(200).json({
+            success: true,
+            message: "Orders fetched successfully!",
+            data: result,
+        });
+    }
+    catch (error) {
+        console.error(error);
+    }
+});
+exports.OrderController = { createNewOrder, getAllOrders };
